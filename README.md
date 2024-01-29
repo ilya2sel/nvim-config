@@ -15,19 +15,19 @@
 - `<leader><leader>`: Source current file
 
 ## Plugins
-### Undotree
+### 🌴 Undotree
 - `<leader>u`: Toggle Undotree
 
-### Trouble
+### 😖 Trouble
 - `<leader>xq`: Toggle Trouble
 
-### Telescope
+### 🔭 Telescope
 - `<leader>pf`: Explore project files
 - `<C-p>`: Explore git files
 - `<leader>vh`: Toggle Telescope help
 - `<leader>ps`: Grep in project
 
-### LSP-Zero
+### 🤖 LSP-Zero
 - `gd`: Go-to definition
 - `K`: Hover
 - `<leader>vws`: Workspace Symbol (Unknown for now)
@@ -39,13 +39,13 @@
 - `<leader>vrn`: Rename in file
 - `<C-h>`: Toggle code help in **insert** mode
 
-#### Suggestions
+#### 💡 Suggestions
 - `<C-p>`: Select previous suggestion
 - `<C-n>`: Select next suggestion
 - `<C-Space>`: Confirm suggestion
 - `<C-y>`: Complete suggestion
 
-### Harpoon
+### 🔱 Harpoon
 - `<leader>a`: Append file to Harpoon list
 - `<C-e>`: Toggle Harpoon quick menu
 - `<C-h>`: First file
@@ -53,5 +53,5 @@
 - `<C-k>`: Third file
 - `<C-l>`: Fourth file
 
-### Git Fugitive
+### 🕵 Git Fugitive
 - `<leader>gs`: Toggle Git menu
