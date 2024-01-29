@@ -1,48 +1,58 @@
--- Set leader key to space
+-- leader key
 vim.g.mapleader = " "
 
--- Project view
+-- project view
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
--- Move line/block with Up/Down keys when selected
+-- move selected line/block with up/down keys
 vim.keymap.set("v", "<S-Up>", ":m '<-2<CR>gv=gv")
 vim.keymap.set("v", "<S-Down>", ":m '>+1<CR>gv=gv")
 
--- Apped the line bellow with a space
+-- Append line below with a space
 vim.keymap.set("n", "J", "mzJ`z")
 
--- Jump half page & keep cursor in the middle
+-- jump halfpage && keep cursor in middle of page
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
--- Keep Search terms in the middle of the page
+-- keep search terms in middle of page
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- Paste without re-copy
+-- paste without re-copy
 vim.keymap.set("x", "<leader>p", [["_dP]])
 
--- Copy to System clipboard
+-- copy to system clipboard
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
--- Delete to void register (delete without copy)
+-- delete without re-copy
 vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
--- This is going to get me cancelled
+-- ctl+c -> Esc
 vim.keymap.set("i", "<C-c>", "<Esc>")
 
--- Disable Q
+-- disable Q
 vim.keymap.set("n", "Q", "<nop>")
 
--- Quickfix
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-Down>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+-- format file
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+
+-- quickfixes
+vim.keymap.set("n", "<C-Up>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-Down>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 
--- Replace current word
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+-- replace current word in file
+vim.keymap.set(
+    "n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
+)
 
--- Make current file executable
+-- make current file executable
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- source file
+vim.keymap.set("n", "<leader><leader>", function()
+    vim.cmd("so")
+end)

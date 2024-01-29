@@ -1,10 +1,2 @@
-require("ilya2s.remap")
 require("ilya2s.set")
-
-
-
-
-
-
-
-
+require("ilya2s.remap")
