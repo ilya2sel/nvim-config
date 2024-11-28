@@ -20,11 +20,8 @@ end)
 require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = {
-        'tsserver', 'lua_ls', 'clangd', 'bashls', 'html', 'cssls',
-        'jsonls', 'dockerls', 'docker_compose_language_service', 'eslint',
-        'ltex', 'marksman', 'pyright', 'neocmake', 'cssmodules_ls',
-        'golangci_lint_ls', 'gopls', 'htmx', 'gradle_ls', 'biome',
-        'texlab', 'rust_analyzer', 'svelte', 'tailwindcss', 'lemminx', 'yamlls'
+        'lua_ls', 'bashls', 'jsonls', 'dockerls', 'docker_compose_language_service',
+        'eslint', 'marksman', 'pyright', 'yamlls', 'phpactor'
     },
     handlers = {
         lsp_zero.default_setup,
@@ -32,6 +29,9 @@ require('mason-lspconfig').setup({
             local lua_opts = lsp_zero.nvim_lua_ls()
             require('lspconfig').lua_ls.setup(lua_opts)
         end,
+        jdtls = function ()
+            require('lspconfig').jdtls.setup({})
+        end
     }
 })
 
