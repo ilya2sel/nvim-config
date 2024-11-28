@@ -8,8 +8,8 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.5',
-        requires = { { 'nvim-lua/plenary.nvim' } }
+        'nvim-telescope/telescope.nvim', tag = '0.1.8',
+        requires = {{ 'nvim-lua/plenary.nvim' }}
     }
 
     use({
@@ -75,4 +75,10 @@ return require('packer').startup(function(use)
 
     use("github/copilot.vim")
     use("eandrju/cellular-automaton.nvim")
+
+    use({
+        "jose-elias-alvarez/null-ls.nvim",
+        requires = {"nvim-lua/plenary.nvim"}
+    })
+    use 'mfussenegger/nvim-jdtls'
 end)
