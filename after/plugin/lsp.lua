@@ -21,7 +21,7 @@ require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = {
         'lua_ls', 'bashls', 'jsonls', 'dockerls', 'docker_compose_language_service',
-        'eslint', 'marksman', 'pyright', 'yamlls', 'phpactor'
+        'eslint', 'marksman', 'pyright', 'yamlls', 'phpactor', 'volar'
     },
     handlers = {
         lsp_zero.default_setup,
