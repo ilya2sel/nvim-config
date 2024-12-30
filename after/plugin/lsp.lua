@@ -1,61 +1,53 @@
-local lsp_zero = require('lsp-zero')
+local lsp = require('lsp-zero').preset("recommended")
 
-lsp_zero.preset("recommended")
-
-lsp_zero.on_attach(function(client, bufnr)
-    local opts = { buffer = bufnr, remap = false }
-
-    vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-    vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-    vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+lsp.on_attach(function(client, bufnr)
+    local bufopts = { buffer = bufnr, remap = false }
+    local keymaps = {
+        { "n", "gd",          vim.lsp.buf.definition,       "Go to definition" },
+        { "n", "K",           vim.lsp.buf.hover,            "Hover information" },
+        { "n", "<leader>vws", vim.lsp.buf.workspace_symbol, "Workspace symbols" },
+        { "n", "<leader>vd",  vim.diagnostic.open_float,    "Show diagnostics" },
+        { "n", "[d",          vim.diagnostic.goto_next,     "Next diagnostic" },
+        { "n", "]d",          vim.diagnostic.goto_prev,     "Previous diagnostic" },
+        { "n", "<leader>vca", vim.lsp.buf.code_action,      "Code action" },
+        { "n", "<leader>vrr", vim.lsp.buf.references,       "References" },
+        { "n", "<leader>vrn", vim.lsp.buf.rename,           "Rename symbol" },
+        { "i", "<C-h>",       vim.lsp.buf.signature_help,   "Signature help" },
+    }
+    for _, km in ipairs(keymaps) do
+        vim.keymap.set(km[1], km[2], km[3], vim.tbl_extend('force', bufopts, { desc = km[4] }))
+    end
 end)
 
-require('mason').setup({})
+require('mason').setup()
 require('mason-lspconfig').setup({
     ensure_installed = {
         'lua_ls', 'bashls', 'jsonls', 'dockerls', 'docker_compose_language_service',
-        'eslint', 'marksman', 'pyright', 'yamlls', 'phpactor', 'volar'
+        'marksman', 'pyright', 'yamlls', 'phpactor', 'ts_ls', 'volar'
     },
     handlers = {
-        lsp_zero.default_setup,
+        lsp.default_setup,
         lua_ls = function()
-            local lua_opts = lsp_zero.nvim_lua_ls()
+            local lua_opts = lsp.nvim_lua_ls()
             require('lspconfig').lua_ls.setup(lua_opts)
         end,
-        jdtls = function ()
-            require('lspconfig').jdtls.setup({})
-        end
     }
 })
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
-cmp.setup({
-    sources = {
-        { name = 'path' },
-        { name = 'nvim_lsp' },
-        { name = 'nvim_lua' },
-        { name = 'luasnip', keyword_length = 2 },
-        { name = 'buffer',  keyword_length = 3 },
-    },
-    formatting = lsp_zero.cmp_format(),
+cmp.setup(lsp.defaults.cmp_config({
+    formatting = lsp.cmp_format(),
     mapping = cmp.mapping.preset.insert({
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
         ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
         ['<C-y>'] = cmp.mapping.complete(),
     }),
-})
+}))
 
-lsp_zero.setup()
+lsp.setup()
 
 vim.diagnostic.config({
     virtual_text = true
