@@ -1,58 +1,44 @@
--- leader key
+-- [[ Leader Key ]]
 vim.g.mapleader = " "
 
--- project view
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+-- [[ Basic Keymaps ]]
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Open project view" })
 
--- move selected line/block with up/down keys
-vim.keymap.set("v", "<S-Up>", ":m '<-2<CR>gv=gv")
-vim.keymap.set("v", "<S-Down>", ":m '>+1<CR>gv=gv")
+-- [[ Move Selected Line/Block ]]
+vim.keymap.set("v", "<S-Up>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("v", "<S-Down>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 
--- Append line below with a space
-vim.keymap.set("n", "J", "mzJ`z")
+-- [[ Line Operations ]]
+vim.keymap.set("n", "J", "mzJ`z", { desc = "Join line below with current line" })
 
--- jump halfpage && keep cursor in middle of page
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+-- [[ Navigation ]]
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Page down and center" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Page up and center" })
+vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result and center" })
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result and center" })
 
--- keep search terms in middle of page
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+-- [[ Clipboard ]]
+vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without yanking" })
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
+vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank line to system clipboard" })
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yanking" })
 
--- paste without re-copy
-vim.keymap.set("x", "<leader>p", [["_dP]])
+-- [[ Miscellaneous ]]
+vim.keymap.set("i", "<C-c>", "<Esc>", { desc = "Use Ctrl+C as Esc in insert mode" })
+vim.keymap.set("n", "Q", "<nop>", { desc = "Disable Ex mode" })
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format file with LSP" })
 
--- copy to system clipboard
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+-- [[ Quickfix Navigation ]]
+vim.keymap.set("n", "<C-Up>", "<cmd>cprev<CR>zz", { desc = "Previous quickfix item" })
+vim.keymap.set("n", "<C-Down>", "<cmd>cnext<CR>zz", { desc = "Next quickfix item" })
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Previous location list item" })
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Next location list item" })
 
--- delete without re-copy
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+-- [[ Search and Replace ]]
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace word under cursor" })
 
--- ctl+c -> Esc
-vim.keymap.set("i", "<C-c>", "<Esc>")
-
--- disable Q
-vim.keymap.set("n", "Q", "<nop>")
-
--- format file
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
-
--- quickfixes
-vim.keymap.set("n", "<C-Up>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<C-Down>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-
--- replace current word in file
-vim.keymap.set(
-    "n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
-)
-
--- make current file executable
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
--- source file
+-- [[ File Operations ]]
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make file executable" })
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
-end)
+end, { desc = "Source current file" })
