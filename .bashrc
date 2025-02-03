@@ -41,7 +41,10 @@ cd() {
             builtin cd /workspaces/obi-dev-env/apps/services/php/service-warehouse/
             ;;
         xre)
-            builtin cd /workspaces/obi-dev-env/apps/services/php/service-xre/
+            builtin cd /workspaces/obi-dev-env/apps/services/service-xre/
+            ;;
+        matrix)
+            builtin cd /workspaces/obi-dev-env/apps/services/service-matrix/
             ;;
         communications)
             builtin cd /workspaces/obi-dev-env/apps/services/php/service-communications/
