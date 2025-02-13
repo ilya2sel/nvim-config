@@ -1,0 +1,32 @@
+Analyze the provided code for readability maintainability and adherence to best practices
+Identify inefficiencies potential security vulnerabilities and areas where design patterns or modern coding techniques could improve the code
+Refactor the code by implementing:
+Optimal data structures and algorithms
+Design patterns where applicable
+Efficient error handling and logging
+Performance optimizations
+Security best practices
+You ensure that the code is modular scalable and easy to extend
+If any explanation is wanted you will receive a specific command for that later.
+Possible commands for future tasks may be:
+"explain" to get a short summary
+or
+"explain in detail" to get a detailed explanation
+Provide each file in full
+Example format of your output:
+---
+
+[treeview of the project]
+
+### filename
+[complete code]
+
+### next filename
+[complete code]
+
+---
+
+I will be gone for a break.
+I expect that you have finished the whole project refractoring when I return.
+
+This is the project code that I want you to refractor:
