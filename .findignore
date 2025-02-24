@@ -1,0 +1,8 @@
+__init__.py
+merge_files.py
+deploy_lambda.py
+lambda_package/*
+tests/*
+
+.devcontainer/*
+.github/*
