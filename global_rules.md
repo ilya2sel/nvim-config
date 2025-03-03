@@ -1,0 +1,62 @@
+- Before any interaction or code generation, always read and fully understand the project's codebase.
+- Ensure a comprehensive grasp of the existing architecture, business logic, and coding conventions prior to making modifications.
+- Thoroughly assess the codebase for readability, maintainability, and alignment with both industry standards and best practices
+- Never change established business logic or domain concepts unless explicitly instructed by the user.
+- All code suggestions must operate within and respect the current business rules, including interactions with external services.
+- All modifications or enhancements must integrate seamlessly with the existing codebase.
+- Generate code that adheres to current integration patterns and project-specific conventions.
+- Examine architectural design for improvements that enhance long-term flexibility
+- Only suggest improvements or new features that align with and do not disrupt the established system.
+- Any new code or tests must complement, not replace, existing functionality.
+- Detect inefficiencies, security vulnerabilities, and potential improvements using modern coding techniques
+- Spot opportunities to integrate established design patterns, enhance data-flow, and reduce complexity
+- Appropriately apply relevant design patterns where beneficial
+- Enforce security best practices
+- Ensure final code changes are modular, scalable, and straightforward to extend or modify
+- Provide concise, step-by-step justifications for each change, focusing on actionable insights and maintainability
+- All variables, functions, classes, and modules must use descriptive names that accurately convey their purpose.
+- Avoid abbreviations or generic names (e.g., use "calculateTotalPrice" instead of "calcTP").
+- Enforce the project’s naming style consistently (camelCase, PascalCase, snake_case, etc.).
+- Encourage a consistent coding style
+- Include inline comments and documentation for complex or non-obvious logic.
+- Comments should explain the "why" behind the code, not the "what".
+- Each module, class, or function should have only one responsibility.
+- If a function handles multiple tasks (e.g., user input and data processing), split it into separate functions.
+- Code should be open for extension but closed for modification.
+- Use interfaces or abstract classes to allow future enhancements without altering existing code.
+- Subclasses or derived classes must be usable in place of their base classes without breaking functionality.
+- Avoid large, monolithic interfaces.
+- Create smaller, specific interfaces so that classes only implement the methods they need.
+- High-level modules should not depend on low-level modules; both should depend on abstractions.
+- Utilize dependency injection and inversion-of-control patterns where applicable.
+- Eliminate code duplication.
+- Extract repetitive code into common functions or modules.
+- Generate straightforward, easy-to-understand code.
+- Avoid overcomplicating solutions when simpler alternatives exist.
+- Organize code into well-defined, independent modules or components.
+- Each module should focus on a specific aspect of functionality.
+- Replace magic numbers or strings with named constants or configuration variables.
+- Adhere to a common code style guide (indentation, bracket placement, line lengths, etc.).
+- Integrate with linters and formatters to maintain consistency.
+- Auto-generate documentation stubs for public APIs and critical code sections.
+- Clearly document any non-obvious implementation details.
+- Advocate for clear and comprehensive documentation to facilitate smooth onboarding, maintenance, and future extensions
+- Structure code to be easily read and understood, even if it means sacrificing minor performance optimizations.
+- Incorporate comprehensive error handling (try/catch blocks, error logging, graceful degradation).
+- Validate inputs to prevent runtime errors.
+- Write code that is easy to test, using dependency injection and modular design.
+- Include stubs or test scaffolds for major functions where appropriate.
+- Include logging mechanisms in generated code to assist with debugging and production monitoring.
+- Favor efficient and scalable solutions.
+- Avoid unnecessary loops or redundant operations when a more optimal algorithm is available.
+- Utilize the most efficient data structures and algorithms for the task
+- Introduce performance improvements that reduce overhead and maximize throughput
+- Manage resources responsibly (memory, file handles, network connections, etc.).
+- Use proper cleanup methods or context managers where applicable.
+- Generate code that is easy to review by ensuring clear separation of concerns and adherence to coding standards.
+- Iterative Approach: Tackle problems in smaller chunks and test often.
+- Online Resources: Consult reputable online communities or official documentation for troubleshooting.
+- Persistence: If errors persist after multiple attempts, refer to solution patterns or best practices from the wider developer community.
+- Proactive Warnings: Identify likely error scenarios and suggest ways to resolve them.
+- Documentation References: Encourage reviewing official, updated documentation if issues arise.
+- User Guidance: Clearly outline how to handle potential pitfalls during implementation or compilation.
