@@ -23,6 +23,9 @@ def main():
     # Copy the ./app/ directory into lambda_package/
     run_command(["cp", "-r", "./app/", "lambda_package/"])
 
+    # Copy the ./env.json file into lambda_package/
+    run_command(["cp", "./env.json", "lambda_package/"])
+
     # Change to the lambda_package directory
     package_dir = "lambda_package"
 
@@ -30,13 +33,14 @@ def main():
     run_command(["rm", "-rf", "../deployment.zip"], cwd=package_dir)
 
     # Zip all files and the .env file from lambda_package into ../deployment.zip
-    run_command(["zip", "-r", "../deployment.zip", ".", ".env"], cwd=package_dir)
+    run_command(["zip", "-r", "../deployment.zip", ".", "env.json"], cwd=package_dir)
 
     # Return to project root for subsequent commands
     root_dir = os.getcwd()
 
     # Delete the existing Lambda function (if it exists)
-    run_command(["awslocal", "lambda", "delete-function", "--function-name", "ore_service_lambda"], cwd=root_dir)
+    if subprocess.run(["awslocal", "lambda", "get-function", "--function-name", "ore_service_lambda"], cwd=root_dir).returncode == 0:
+        run_command(["awslocal", "lambda", "delete-function", "--function-name", "ore_service_lambda"], cwd=root_dir)
 
     # Create the new Lambda function with the deployment package
     run_command([
