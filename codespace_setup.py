@@ -8,8 +8,8 @@ HOME_DIR = os.path.expanduser("~")
 BASHRC_PATH = os.path.join(HOME_DIR, ".bashrc")
 BASH_ALIASES_PATH = os.path.join(HOME_DIR, ".bash_aliases")
 
-NVIM_TARBALL = "nvim-linux-x86_64.tar.gz"
-NVIM_PKG_URL = "https://github.com/neovim/neovim/releases/latest/download/" + NVIM_TARBALL
+NVIM_TARBALL = "nvim-linux64.tar.gz"
+NVIM_PKG_URL = "https://github.com/neovim/neovim/releases/download/v0.10.3/" + NVIM_TARBALL
 PACKER_PATH = os.path.join(
     HOME_DIR, ".local", "share", "nvim", "site", "pack", "packer", "start", "packer.nvim"
 )
