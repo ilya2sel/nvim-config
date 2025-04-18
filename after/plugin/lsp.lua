@@ -7,12 +7,14 @@ lsp.on_attach(function(client, bufnr)
         { "n", "K",           vim.lsp.buf.hover,            "Hover information" },
         { "n", "<leader>vws", vim.lsp.buf.workspace_symbol, "Workspace symbols" },
         { "n", "<leader>vd",  vim.diagnostic.open_float,    "Show diagnostics" },
-        { "n", "[d",          vim.diagnostic.goto_next,     "Next diagnostic" },
-        { "n", "]d",          vim.diagnostic.goto_prev,     "Previous diagnostic" },
+        { "n", "[d",          function() vim.diagnostic.jump({ count = 1, float = true }) end, "Next diagnostic" },
+        { "n", "]d",          function() vim.diagnostic.jump({ count = -1, float = true }) end, "Previous diagnostic" },
         { "n", "<leader>vca", vim.lsp.buf.code_action,      "Code action" },
         { "n", "<leader>vrr", vim.lsp.buf.references,       "References" },
         { "n", "<leader>vrn", vim.lsp.buf.rename,           "Rename symbol" },
         { "i", "<C-h>",       vim.lsp.buf.signature_help,   "Signature help" },
+        { "n", "<leader>f",   function() vim.lsp.buf.format({ async = true }) end, "Format document" },
+        { "n", "gl",          vim.diagnostic.open_float,    "Show line diagnostics" },
     }
     for _, km in ipairs(keymaps) do
         vim.keymap.set(km[1], km[2], km[3], vim.tbl_extend('force', bufopts, { desc = km[4] }))
@@ -23,7 +25,7 @@ require('mason').setup()
 require('mason-lspconfig').setup({
     ensure_installed = {
         'lua_ls', 'bashls', 'jsonls', 'dockerls', 'docker_compose_language_service',
-        'marksman', 'pyright', 'yamlls', 'phpactor', 'ts_ls', 'volar'
+        'marksman', 'pyright', 'yamlls', 'phpactor', 'ts_ls', 'volar', 'eslint'
     },
     handlers = {
         lsp.default_setup,
